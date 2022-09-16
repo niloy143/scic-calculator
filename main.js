@@ -11,7 +11,7 @@ const assignmentGrid = () => {
             <h2 class="text-2xl font-semibold text-center">Assignment ${i+1}</h2>
             <div class="w-full flex items-center justify-around gap-3 text-xl">
                 <label for="">Obtained:</label>
-                <input class="w-12 py-1 rounded text-center font-semibold" type="text" placeholder="0" oninput="obtainedInput(this)" value="60">
+                <input class="w-12 py-1 rounded text-center font-semibold" type="text" placeholder="0" oninput="obtainedInput(this)" value="0">
             </div>
             <div class="w-full flex items-center justify-around text-xl">
                 <label for="">Submitted in: </label>
@@ -71,7 +71,7 @@ const calculate = () => {
             <li class="flex justify-between"><span>You Obtained:</span><span class="font-semibold text-lime-400">${totalObtained}</span></li>
         </ul>
         <h3 class="text-2xl text-center text-${(answer > 60 || answer === 'Not Fulfilled') ? 'red': 'lime'}-400 font-semibold my-3">${answer}</h3>
-        <p class="text-center">${answer > 60 ? overLimitMsg : (answer === 'Fulfilled' && !lessHalf) ? fulfilledMsg : (answer === 'Fulfilled' && lessHalf) ? 'But' : answer === 'Not Fulfilled' ? notfulfilledMsg : limitOkMsg} <br> ${lessHalf ? lessHalfMsg : (answer <= 60 && answer !== 'Fulfilled' && answer !== 'Not Fulfilled' ) ? halfOkMsg : ''}</p>
+        <p class="text-center">${answer > 60 ? overLimitMsg : (answer === 'Fulfilled' && !lessHalf) ? fulfilledMsg : (answer === 'Fulfilled' && lessHalf) ? 'But' : answer === 'Not Fulfilled' ? notfulfilledMsg : limitOkMsg} <br> ${lessHalf ? lessHalfMsg : ((answer <= 60 || answer === 'Fulfilled' || answer === 'Not Fulfilled') && restAssignments !== 0) ? halfOkMsg : ''}</p>
         `
     }
     
