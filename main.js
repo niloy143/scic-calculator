@@ -1,5 +1,4 @@
 const assignmentGrid = () => {
-    const totalAssignment = document.getElementById('assignment-amount');
     let assignmentAmount = Number(totalAssignment.value);
     assignmentAmount = (assignmentAmount>0 && assignmentAmount<=99) ? assignmentAmount : 12;
     
@@ -32,3 +31,44 @@ const assignmentGrid = () => {
 }
 
 assignmentGrid();
+
+const calculate = () => {
+    const result = document.getElementById('result');
+
+    const assignments = Number(totalAssignment.value);
+    let finished = 0;
+
+    const totalMarks = assignments * 60;
+    const requirement = assignments * 50;
+    let totalObtained = 0;
+    let lessHalf = false;
+
+    for (const assignment of assignmentContainer.children) {
+        const obtained = Number(assignment.children[1].children[1].value);
+        const submission = Number(submittedIn(assignment.children[2].children[1]));
+        
+        totalObtained += obtained;
+        if(obtained) {finished++};
+        if(obtained !== 0 && (obtained / submission * 100) < 50) {lessHalf = true};
+    }
+    
+    const answer = ((requirement - totalObtained) / (assignments - finished)).toFixed(2);
+
+    const lessHalfMsg = '<span class="text-red-400 font-semibold"> Oops! You got less than 50% marks in minimum one assigment.</span>';
+    const overLimitMsg = `<span class="text-red-400 font-semibold">Oops! It\'s not possible to get ${answer} out of 60'.</span>`;
+    const halfOkMsg = 'you should not get less than <span class="text-yellow-200 font-semibold">50%</span> marks in any assignment.';
+    const limitOkMsg = `You need to get at least <span class="text-lime-400 font-semibold">${Math.ceil(answer)}</span> marks in each rest of assignments.`;
+    
+    result.innerHTML = `
+        <ul class="max-w-xs mx-auto">
+            <li class="flex justify-between"><span>Total Assignment Marks:</span><span class="font-semibold text-lime-400">${totalMarks}</span></li>
+            <li class="flex justify-between"><span>SCIC Requirement Marks:</span><span class="font-semibold text-lime-400">${requirement}</span></li>
+            <li class="flex justify-between"><span>Assignment Finished:</span><span class="font-semibold text-lime-400">${finished}</span></li>
+            <li class="flex justify-between"><span>You Obtained:</span><span class="font-semibold text-lime-400">${totalObtained}</span></li>
+        </ul>
+        <h3 class="text-2xl text-center text-${answer <= 60 ? 'lime' : 'red'}-400 font-semibold my-3">${answer}</h3>
+        <p class="text-center">${answer > 60 ? overLimitMsg : limitOkMsg} <br> ${lessHalf ? lessHalfMsg : answer <= 60 ? halfOkMsg : ''}</p>
+        `
+    }
+    
+    calculate();

@@ -1,4 +1,5 @@
 const assignmentContainer = document.getElementById('assignment-container');
+const totalAssignment = document.getElementById('assignment-amount');
 
 const submittedIn = select =>  select.options[select.selectedIndex].value;
 
