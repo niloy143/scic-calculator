@@ -16,12 +16,12 @@
             SCIC Calculator is made to calculate the scic criteria of "Complete Web Development Course by Programming Hero". The basic criteria is average 50 marks and at least 50% in every assignment.
         </p>
         <div>
-            <label class="text-xl font-semibold" for="">Calculate <input class="w-12 py-1 text-center text-slate-900 rounded" type="text" value="12"> Assignments</label>
+            <label class="text-xl font-semibold" for="">Calculate <input class="w-12 py-1 text-center text-slate-900 rounded" type="text" value="12" oninput="assignmentGrid()" id="assignment-amount"> Assignments</label>
         </div>
     </header>
 
     <main>
-        <section class="p-5 mx-auto max-w-5xl rounded-md bg-violet-900 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section class="p-5 mx-auto max-w-5xl rounded-md bg-violet-900 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="assignment-container">
             <div class="bg-green-400 rounded p-5 flex flex-col items-center gap-3">
                 <h2 class="text-2xl font-semibold text-center">Assignment 1</h2>
                 <div class="w-full flex items-center justify-around gap-3 text-xl">
@@ -209,6 +209,7 @@
         <p class="text-white text-center py-5 font-serif">Coded by '<a class="italic text-lime-400" href="https://facebook.com/niloymahmudapu1" target="_blank">Niloy Mahmud Apu</a>'</p>
     </footer>
 
+    <script src="common.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
